@@ -8,7 +8,7 @@
 
 ```txt
 app/                  ページ本体
-content/posts/        公開記事のMarkdown
+content/posts/        記事のMarkdown
 content/templates/    記事テンプレート
 public/images/posts/  記事アイキャッチ画像
 public/images/hotels/ 記事内ギャラリーやホテル写真
@@ -18,6 +18,40 @@ src/config/site.ts    サイト情報、SNS、カテゴリ、タグ
 src/components/       共通パーツ
 src/lib/              記事読み込み、日付、Markdown処理
 ```
+
+## サイト基本設定の変更方法
+
+サイト名、説明文、運営者名、プロフィール文、お問い合わせメール、SNS URL、サイトURLは、原則として次のファイルだけを編集します。
+
+```txt
+src/config/site.ts
+```
+
+主に編集する項目です。
+
+```ts
+name: "ヒルオジ旅行ブログ",
+description: "ハイコスパで最高のホテル体験を届ける旅行ブログ",
+shortDescription: "ハイコスパで最高のホテル体験を届ける旅行ブログ",
+authorName: "ヒルオジ",
+url: "https://hiruozi-travel-blog.vercel.app",
+contactEmail: "hiruozi.hotel35@gmail.com",
+xUrl: "https://x.com/hiruozi_hotel35",
+youtubeUrl: "https://www.youtube.com/channel/UCwNs6XHqR72pnwn18cjTnWg",
+instagramUrl: "https://www.instagram.com/hiruozi_hotel35/",
+tiktokUrl: "https://www.tiktok.com/@hiruozi35",
+profile: "プロフィール文",
+```
+
+- サイト名を変える: `name`を変更します。
+- プロフィール文を変える: `profile`を変更します。
+- お問い合わせメールを変える: `contactEmail`を変更します。
+- X URLを変える: `xUrl`を変更します。
+- YouTube URLを変える: `youtubeUrl`を変更します。
+- Instagram URLを変える: `instagramUrl`を変更します。
+- TikTok URLを変える: `tiktokUrl`を変更します。
+- SNSを非表示にする: 該当SNSのURLを空文字`""`にします。SNSサービスのトップページだけを入れた場合も自動で非表示になります。
+- 独自ドメインへ変更する: `url`を独自ドメインのURLに変更します。canonical URL、OGP、sitemap.xml、robots.txt、SNSシェア用URLに反映されます。
 
 ## 記事の追加方法
 
@@ -59,11 +93,26 @@ rating: 4.5
 summary: 記事の要約
 affiliateDisclosure: 広告やアフィリエイトに関する説明
 featured: true
+draft: false
 gallery:
   - /images/hotels/example-room.png|客室の写真|客室のキャプション
 ```
 
 `featured: true`にすると、トップページのおすすめ記事に表示されやすくなります。
+
+記事を公開する場合は、記事ファイルのfront matterで次のように設定します。
+
+```yaml
+draft: false
+```
+
+記事を下書きにする場合は、次のように設定します。
+
+```yaml
+draft: true
+```
+
+`draft: true`の記事は、本番環境ではトップページ、記事一覧、カテゴリ別記事一覧、タグ別記事一覧、関連記事、サイトマップ、`sitemap.xml`に表示されません。開発環境では確認できるように読み込まれます。
 
 ## 画像の追加方法
 
@@ -128,18 +177,16 @@ tags: ホテル宿泊記, 沖縄旅行, 朝食ビュッフェ
 
 ## SNS URLの変更方法
 
-SNSリンクは`src/config/site.ts`の`siteConfig`で管理します。
+SNSリンクは`src/config/site.ts`の`siteConfig`で管理します。現在表示するSNSは、X、YouTube、Instagram、TikTokです。
 
 ```ts
-xUrl: "https://x.com/your_account",
-instagramUrl: "https://www.instagram.com/your_account",
-youtubeUrl: "",
-tiktokUrl: "",
-noteUrl: "",
-threadsUrl: "",
+xUrl: "https://x.com/hiruozi_hotel35",
+youtubeUrl: "https://www.youtube.com/channel/UCwNs6XHqR72pnwn18cjTnWg",
+instagramUrl: "https://www.instagram.com/hiruozi_hotel35/",
+tiktokUrl: "https://www.tiktok.com/@hiruozi35",
 ```
 
-空文字のSNSは、ヘッダー、フッター、プロフィール、記事詳細ページに表示されません。
+URLを空文字`""`にすると、そのSNSはヘッダー、フッター、トップページのプロフィール部分、運営者情報ページ、記事下の著者プロフィール欄に表示されません。
 
 ## SEOタイトルと説明文の変更方法
 
@@ -154,12 +201,12 @@ seoDescription: 検索結果に出したい説明文
 
 ```ts
 name: "ヒルオジ旅行ブログ",
-description: "サイト全体の説明",
-url: "https://example.com",
+description: "ハイコスパで最高のホテル体験を届ける旅行ブログ",
+url: "https://hiruozi-travel-blog.vercel.app",
 ogpImage: "/images/ogp/default-ogp.png",
 ```
 
-本番公開時は`url`を実際のドメインに変更してください。canonical URL、OGP、sitemap.xml、robots.txtで使われます。
+独自ドメインを設定したら、`url`を実際のドメインに変更してください。canonical URL、OGP、sitemap.xml、robots.txt、SNSシェア用URLで使われます。
 
 ## ローカルで確認する方法
 
@@ -210,7 +257,7 @@ npm run build
 - ヘッダーとフッターから主要ページへ移動できる
 - 各カテゴリーに記事があり、空ページに見えない
 - 記事本文が短すぎず、独自の説明や体験ベースの観点がある
-- 広告枠はダミー表示のみで、実広告コードを入れていない
+- 広告IDを設定していない状態で、公開画面に広告枠や説明文が表示されていない
 - 過剰なアフィリエイト誘導やクリック誘導がない
 - 画像の権利を確認し、無断転載画像を使っていない
 - 料金、特典、会員制度など変更されやすい情報は公開前に公式サイトで確認した
@@ -224,3 +271,5 @@ npm run build
 - ハイアットホテルはどんな人に向いているのか
 - ホテル好きが選ぶべきクレジットカードの考え方
 - 空港ラウンジを使うと旅行はどれだけ快適になるのか
+
+`ウォルドーフ・アストリア大阪 宿泊記`は、現時点では`draft: true`の下書き記事として管理しています。実際の公開記事として内容を確認・加筆できたら、front matterを`draft: false`に変更してください。

@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { SectionHeader } from "@/src/components/SectionHeader";
-import { siteConfig } from "@/src/config/site";
+import { absoluteSiteUrl, siteConfig } from "@/src/config/site";
 import { getCategoryCounts } from "@/src/lib/posts";
 
 export const metadata: Metadata = {
@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   description:
     "ホテル宿泊記、ヒルトン、マリオット、IHG、ハイアット、クレジットカード、飛行機のカテゴリ一覧です。",
   alternates: {
-    canonical: "/categories",
+    canonical: absoluteSiteUrl("/categories"),
   },
   openGraph: {
     title: `カテゴリ一覧 | ${siteConfig.name}`,
     description: "ヒルオジ旅行ブログのカテゴリ一覧ページです。",
-    url: "/categories",
+    url: absoluteSiteUrl("/categories"),
   },
 };
 

@@ -17,6 +17,7 @@ rating: 4.0
 summary: この記事の要約を100字前後で入力します。
 affiliateDisclosure: 本記事には広告を含む場合があります。カード申込み前には必ず公式サイトで最新条件を確認してください。
 featured: false
+draft: true
 gallery:
   - /images/hotels/sample-card.png|カード利用イメージ|カード利用のキャプション
 ---

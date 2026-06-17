@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
-import { categories, fixedPages, tags } from "@/src/config/site";
+import { absoluteSiteUrl, categories, fixedPages, tags } from "@/src/config/site";
 import { getAllPosts } from "@/src/lib/posts";
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "ヒルオジ旅行ブログのサイトマップ。記事、カテゴリ、タグ、固定ページへのリンクをまとめています。",
   alternates: {
-    canonical: "/sitemap",
+    canonical: absoluteSiteUrl("/sitemap"),
   },
 };
 

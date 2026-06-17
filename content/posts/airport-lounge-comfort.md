@@ -15,8 +15,9 @@ brand:
 area:
 rating: 4.0
 summary: 空港ラウンジは、搭乗前の待ち時間を静かに整える場所です。食事やお酒だけでなく、座れる安心感、充電、作業環境が旅行全体の疲れを減らしてくれます。
-affiliateDisclosure: 本記事は空港ラウンジ利用の考え方をまとめた記事です。広告枠はダミースペースのみ設置しています。
+affiliateDisclosure: 本記事は空港ラウンジ利用の考え方をまとめた記事です。記事内には将来的に広告やアフィリエイトリンクを掲載する場合があります。
 featured: false
+draft: false
 gallery:
   - /images/hotels/airport-lounge-seat.png|空港ラウンジの座席イメージ|搭乗前に落ち着いて座れるだけでも移動日の疲れは変わります。
   - /images/hotels/airplane-window.png|飛行機の窓から見る空のイメージ|ラウンジで体力を温存すると、到着後の行動もしやすくなります。

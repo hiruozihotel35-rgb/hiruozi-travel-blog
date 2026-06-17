@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { PostCard } from "@/src/components/PostCard";
 import { SectionHeader } from "@/src/components/SectionHeader";
-import { siteConfig, tags } from "@/src/config/site";
+import { absoluteSiteUrl, siteConfig, tags } from "@/src/config/site";
 import { getPostsByTag, getTagByNameOrSlug } from "@/src/lib/posts";
 
 type Props = {
@@ -31,12 +31,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${tag.name}タグの記事一覧`,
     description,
     alternates: {
-      canonical: `/tags/${tag.slug}`,
+      canonical: absoluteSiteUrl(`/tags/${tag.slug}`),
     },
     openGraph: {
       title: `${tag.name}タグの記事一覧 | ${siteConfig.name}`,
       description,
-      url: `/tags/${tag.slug}`,
+      url: absoluteSiteUrl(`/tags/${tag.slug}`),
     },
   };
 }

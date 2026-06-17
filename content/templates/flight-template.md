@@ -17,6 +17,7 @@ rating: 4.0
 summary: この記事の要約を100字前後で入力します。
 affiliateDisclosure: 本記事には広告を含む場合があります。航空会社やラウンジの条件は最新情報を公式サイトで確認してください。
 featured: false
+draft: true
 gallery:
   - /images/hotels/sample-lounge.png|空港ラウンジの写真|空港ラウンジのキャプション
   - /images/hotels/sample-seat.png|座席の写真|座席のキャプション

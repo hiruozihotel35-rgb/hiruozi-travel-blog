@@ -1,12 +1,29 @@
+import { siteConfig } from "@/src/config/site";
+
 type AdSlotProps = {
-  label?: string;
+  slotId?: string;
+  className?: string;
+  format?: "auto" | "fluid";
 };
 
-export function AdSlot({ label = "広告掲載スペース" }: AdSlotProps) {
+export function AdSlot({ slotId = "", className = "", format = "auto" }: AdSlotProps) {
+  const clientId = siteConfig.ads.googleAdsenseClientId.trim();
+  const normalizedSlotId = slotId.trim();
+
+  if (!clientId || !normalizedSlotId) {
+    return null;
+  }
+
   return (
-    <aside className="my-10 border border-dashed border-stone-300 bg-stone-50 px-5 py-8 text-center">
-      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-400">Advertisement</p>
-      <p className="mt-2 text-sm text-stone-500">{label}</p>
+    <aside className={`my-10 ${className}`} aria-label="広告">
+      <ins
+        className="adsbygoogle block"
+        style={{ display: "block" }}
+        data-ad-client={clientId}
+        data-ad-slot={normalizedSlotId}
+        data-ad-format={format}
+        data-full-width-responsive="true"
+      />
     </aside>
   );
 }

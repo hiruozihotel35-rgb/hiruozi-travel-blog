@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { PostCard } from "@/src/components/PostCard";
 import { categories, siteConfig } from "@/src/config/site";
-import { getCategoryByNameOrSlug, getPostsByCategory } from "@/src/lib/posts";
+import { absoluteUrl, getCategoryByNameOrSlug, getPostsByCategory } from "@/src/lib/posts";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -28,15 +28,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${category.name}の記事一覧`,
     description: category.description,
     alternates: {
-      canonical: `/categories/${category.slug}`,
+      canonical: absoluteUrl(`/categories/${category.slug}`),
     },
     openGraph: {
       title: `${category.name}の記事一覧 | ${siteConfig.name}`,
       description: category.description,
-      url: `/categories/${category.slug}`,
+      url: absoluteUrl(`/categories/${category.slug}`),
       images: [
         {
-          url: category.image,
+          url: absoluteUrl(category.image),
           width: 1200,
           height: 800,
           alt: `${category.name}カテゴリーのイメージ画像`,
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: `${category.name}の記事一覧 | ${siteConfig.name}`,
       description: category.description,
-      images: [category.image],
+      images: [absoluteUrl(category.image)],
     },
   };
 }

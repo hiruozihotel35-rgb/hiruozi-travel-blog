@@ -25,23 +25,15 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
         <a
           href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="share-button"
         >
           Xでシェア
         </a>
         <a
-          href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
-          target="_blank"
-          rel="noreferrer"
-          className="share-button"
-        >
-          Facebookでシェア
-        </a>
-        <a
           href={`https://social-plugins.line.me/lineit/share?url=${encodedUrl}`}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="share-button"
         >
           LINEでシェア

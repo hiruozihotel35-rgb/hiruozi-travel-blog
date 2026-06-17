@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getSocialLinks } from "@/src/config/site";
 
 type SocialLinksProps = {
@@ -15,15 +14,21 @@ export function SocialLinks({ className = "" }: SocialLinksProps) {
   return (
     <div className={`flex flex-wrap items-center gap-2 ${className}`}>
       {links.map((link) => (
-        <Link
+        <a
           key={link.name}
           href={link.href}
           target="_blank"
-          rel="noreferrer"
-          className="inline-flex min-h-9 items-center border border-stone-200 px-3 text-xs font-semibold uppercase tracking-[0.08em] text-stone-700 transition hover:border-[var(--gold)] hover:text-[var(--gold-dark)]"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-9 items-center gap-2 border border-stone-200 px-3 text-xs font-semibold text-stone-700 transition hover:border-[var(--gold)] hover:text-[var(--gold-dark)]"
         >
+          <span
+            aria-hidden="true"
+            className="inline-flex h-5 min-w-5 items-center justify-center bg-stone-950 px-1 text-[10px] font-bold leading-none text-white"
+          >
+            {link.iconLabel}
+          </span>
           {link.name}
-        </Link>
+        </a>
       ))}
     </div>
   );

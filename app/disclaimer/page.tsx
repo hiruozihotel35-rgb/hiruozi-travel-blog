@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
-import { siteConfig } from "@/src/config/site";
+import { absoluteSiteUrl, siteConfig } from "@/src/config/site";
 
 export const metadata: Metadata = {
   title: "免責事項",
   description:
     "ヒルオジ旅行ブログの免責事項。掲載情報、料金、特典、外部リンク、アフィリエイトに関する注意事項を掲載しています。",
   alternates: {
-    canonical: "/disclaimer",
+    canonical: absoluteSiteUrl("/disclaimer"),
   },
 };
 
@@ -28,8 +28,12 @@ export default function DisclaimerPage() {
           <h2>掲載情報について</h2>
           <p>
             {siteConfig.name}
-            では、できる限り正確な情報を掲載するよう努めていますが、ホテル特典、料金、キャンペーン、
-            上級会員制度、航空会社サービスは変更される場合があります。最新情報は必ず公式サイトで確認してください。
+            では、できる限り正確な情報を掲載するよう努めていますが、旅行情報、ホテル特典、料金、
+            キャンペーン、クレジットカード、ポイント、マイル、航空会社、ホテル上級会員制度などの条件は
+            変更される場合があります。
+          </p>
+          <p>
+            予約や申込みの前には、ホテル、航空会社、カード会社、旅行予約サイトなどの公式情報を必ず確認してください。
           </p>
 
           <h2>宿泊記・レビューについて</h2>
@@ -41,6 +45,12 @@ export default function DisclaimerPage() {
           <h2>外部リンクについて</h2>
           <p>
             当サイトから外部サイトへ移動した場合、移動先サイトで提供される情報やサービスについて当サイトは責任を負いません。
+          </p>
+
+          <h2>アフィリエイトリンクについて</h2>
+          <p>
+            当サイトでは、将来的に旅行予約サイト、ホテル、クレジットカード等のアフィリエイトリンクを掲載する場合があります。
+            リンク先での商品やサービスの申込み、契約、問い合わせは、利用者ご自身の判断と責任で行ってください。
           </p>
 
           <h2>損害等の責任について</h2>

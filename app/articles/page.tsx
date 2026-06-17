@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { PostCard } from "@/src/components/PostCard";
 import { SectionHeader } from "@/src/components/SectionHeader";
-import { siteConfig } from "@/src/config/site";
+import { absoluteSiteUrl, siteConfig } from "@/src/config/site";
 import { getAllPosts } from "@/src/lib/posts";
 
 export const metadata: Metadata = {
@@ -10,13 +10,13 @@ export const metadata: Metadata = {
   description:
     "ヒルオジ旅行ブログの記事一覧。ホテル宿泊記、ホテル上級会員、クレジットカード、飛行機、旅行ノウハウの記事をまとめています。",
   alternates: {
-    canonical: "/articles",
+    canonical: absoluteSiteUrl("/articles"),
   },
   openGraph: {
     title: `記事一覧 | ${siteConfig.name}`,
     description:
       "ホテル宿泊記、ホテル上級会員、クレジットカード、飛行機、旅行ノウハウの記事一覧です。",
-    url: "/articles",
+    url: absoluteSiteUrl("/articles"),
   },
 };
 

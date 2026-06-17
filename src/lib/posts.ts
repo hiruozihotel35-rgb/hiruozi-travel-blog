@@ -1,6 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
-import { categories, tags, siteConfig, type Category, type Tag } from "@/src/config/site";
+import {
+  absoluteSiteUrl,
+  categories,
+  tags,
+  siteConfig,
+  type Category,
+  type Tag,
+} from "@/src/config/site";
 
 export type GalleryImage = {
   src: string;
@@ -28,8 +35,13 @@ export type Post = {
   summary: string;
   affiliateDisclosure: string;
   featured: boolean;
+  draft: boolean;
   gallery: GalleryImage[];
   content: string;
+};
+
+type GetAllPostsOptions = {
+  includeDrafts?: boolean;
 };
 
 const postsDirectory = path.join(process.cwd(), "content", "posts");
@@ -162,18 +174,25 @@ function normalizePost(slug: string, data: Record<string, string | string[]>, co
     affiliateDisclosure: readString(
       data,
       "affiliateDisclosure",
-      "この記事には広告を掲載できるスペースを用意しています。現時点では広告コードは設置していません。",
+      "記事内には将来的に広告やアフィリエイトリンクを掲載する場合があります。",
     ),
     featured: readBoolean(data, "featured"),
+    draft: readBoolean(data, "draft"),
     gallery: readGallery(data),
     content,
   };
 }
 
-export function getAllPosts() {
+export function shouldIncludeDrafts() {
+  return process.env.NODE_ENV !== "production";
+}
+
+export function getAllPosts(options: GetAllPostsOptions = {}) {
   if (!fs.existsSync(postsDirectory)) {
     return [];
   }
+
+  const includeDrafts = options.includeDrafts ?? shouldIncludeDrafts();
 
   return fs
     .readdirSync(postsDirectory)
@@ -184,6 +203,7 @@ export function getAllPosts() {
       const { data, content } = parseFrontmatter(file);
       return normalizePost(slug, data, content);
     })
+    .filter((post) => includeDrafts || !post.draft)
     .sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
@@ -262,8 +282,7 @@ export function getCategoryCounts() {
 }
 
 export function absoluteUrl(pathname = "") {
-  const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
-  return `${siteConfig.url}${normalizedPath}`;
+  return absoluteSiteUrl(pathname);
 }
 
 export function articleUrl(slug: string) {

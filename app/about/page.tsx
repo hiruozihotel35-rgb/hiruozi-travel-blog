@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { AuthorBox } from "@/src/components/AuthorBox";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { SocialLinks } from "@/src/components/SocialLinks";
-import { siteConfig } from "@/src/config/site";
+import { absoluteSiteUrl, siteConfig } from "@/src/config/site";
 
 export const metadata: Metadata = {
   title: "運営者情報",
   description:
     "ヒルオジ旅行ブログの運営者情報。ホテル宿泊記、ホテル上級会員、旅行に役立つクレジットカードや飛行機情報を発信する個人旅行ブログです。",
   alternates: {
-    canonical: "/about",
+    canonical: absoluteSiteUrl("/about"),
   },
 };
 
@@ -24,8 +24,8 @@ export default function AboutPage() {
           </p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-stone-950">運営者情報</h1>
           <p className="mt-5 text-base leading-8 text-stone-600">
-            {siteConfig.name}は、ホテルステイを中心に旅の満足度を上げる情報をまとめる個人ブログです。
-            宿泊記、ホテル上級会員、クレジットカード、空港ラウンジ、マイル活用を扱います。
+            {siteConfig.name}は、{siteConfig.authorName}が実際の宿泊体験をもとに、ホテルステイを中心とした
+            旅行情報を本音で紹介する個人ブログです。
           </p>
         </section>
 
@@ -33,18 +33,41 @@ export default function AboutPage() {
           <AuthorBox />
         </div>
 
+        <section className="mt-10 rounded-lg border border-stone-200 bg-[var(--paper)] p-6">
+          <h2 className="text-xl font-semibold text-stone-950">プロフィール</h2>
+          <dl className="mt-5 grid gap-5 text-sm leading-7 text-stone-700">
+            <div>
+              <dt className="font-semibold text-stone-950">運営者名</dt>
+              <dd className="mt-1">{siteConfig.authorName}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-stone-950">プロフィール文</dt>
+              <dd className="mt-1">{siteConfig.profile}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-stone-950">お問い合わせメール</dt>
+              <dd className="mt-1">
+                <a href={`mailto:${siteConfig.contactEmail}`} className="font-semibold text-[var(--gold-dark)]">
+                  {siteConfig.contactEmail}
+                </a>
+              </dd>
+            </div>
+          </dl>
+        </section>
+
         <section className="mt-10 grid gap-6 md:grid-cols-2">
           <div className="rounded-lg border border-stone-200 bg-[var(--paper)] p-6">
-            <h2 className="text-xl font-semibold text-stone-950">発信方針</h2>
-            <p className="mt-4 text-sm leading-7 text-stone-700">
-              公式情報だけでは分かりにくい、実際の使いやすさや満足度を大切にします。
-              良かった点だけでなく、気になった点や注意点もあわせて掲載します。
-            </p>
+            <h2 className="text-xl font-semibold text-stone-950">発信している主なテーマ</h2>
+            <ul className="mt-4 grid gap-2 text-sm leading-7 text-stone-700">
+              {siteConfig.mainThemes.map((theme) => (
+                <li key={theme}>{theme}</li>
+              ))}
+            </ul>
           </div>
           <div className="rounded-lg border border-stone-200 bg-[var(--paper)] p-6">
             <h2 className="text-xl font-semibold text-stone-950">SNS</h2>
             <p className="mt-4 text-sm leading-7 text-stone-700">
-              記事化前のメモや宿泊中の気づきはSNSでも発信します。各URLは設定ファイルから変更できます。
+              記事化前のメモや宿泊中の気づきはSNSでも発信します。
             </p>
             <SocialLinks className="mt-5" />
           </div>

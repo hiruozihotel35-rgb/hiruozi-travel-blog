@@ -41,25 +41,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const url = articleUrl(post.slug);
+  const pageUrl = absoluteUrl(url);
 
   return {
     title: post.seoTitle,
     description: post.seoDescription,
     alternates: {
-      canonical: url,
+      canonical: pageUrl,
     },
     openGraph: {
       type: "article",
       title: post.seoTitle,
       description: post.seoDescription,
-      url,
+      url: pageUrl,
       publishedTime: post.date,
       modifiedTime: post.updatedAt,
       authors: [post.author],
       tags: post.tags,
       images: [
         {
-          url: post.eyecatch,
+          url: absoluteUrl(post.eyecatch),
           width: 1200,
           height: 800,
           alt: post.eyecatchAlt,
@@ -70,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: post.seoTitle,
       description: post.seoDescription,
-      images: [post.eyecatch],
+      images: [absoluteUrl(post.eyecatch)],
     },
   };
 }
@@ -202,11 +203,11 @@ export default async function ArticlePage({ params }: Props) {
               <p className="mt-4 text-sm leading-7 text-stone-500">{post.affiliateDisclosure}</p>
             </section>
 
-            <AdSlot label="本文上部に配置する広告枠のダミースペースです" />
+            <AdSlot slotId={siteConfig.ads.articleTopSlotId} />
 
             <MarkdownContent markdown={post.content} />
 
-            <AdSlot label="本文下部に配置する広告枠のダミースペースです" />
+            <AdSlot slotId={siteConfig.ads.articleBottomSlotId} />
 
             <PhotoGallery images={post.gallery} />
 
@@ -263,7 +264,7 @@ export default async function ArticlePage({ params }: Props) {
               </div>
             </div>
 
-            <AdSlot label="サイドバー広告枠のダミースペースです" />
+            <AdSlot slotId={siteConfig.ads.sidebarSlotId} />
           </aside>
         </div>
       </div>

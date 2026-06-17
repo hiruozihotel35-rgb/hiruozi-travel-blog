@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
 import { SectionHeader } from "@/src/components/SectionHeader";
-import { siteConfig } from "@/src/config/site";
+import { absoluteSiteUrl, siteConfig } from "@/src/config/site";
 import { getTagCounts } from "@/src/lib/posts";
 
 export const metadata: Metadata = {
@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   description:
     "ホテル宿泊記、高級ホテル、クラブラウンジ、空港ラウンジ、クレジットカードなど、旅行ブログのタグ一覧です。",
   alternates: {
-    canonical: "/tags",
+    canonical: absoluteSiteUrl("/tags"),
   },
   openGraph: {
     title: `タグ一覧 | ${siteConfig.name}`,
     description: "ヒルオジ旅行ブログのタグ一覧ページです。",
-    url: "/tags",
+    url: absoluteSiteUrl("/tags"),
   },
 };
 

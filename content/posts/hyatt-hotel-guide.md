@@ -15,8 +15,9 @@ brand: Hyatt
 area:
 rating: 4.3
 summary: ハイアットは落ち着いたデザインやホテルステイの質を重視する人に向いています。ホテル数は多すぎないため、泊まりたいエリアに対象ホテルがあるかが判断のポイントです。
-affiliateDisclosure: 記事内には広告掲載を想定したスペースがありますが、現時点では広告コードを入れていません。
+affiliateDisclosure: 記事内には将来的に広告やアフィリエイトリンクを掲載する場合があります。宿泊前には必ず公式情報と最新条件を確認してください。
 featured: false
+draft: false
 gallery:
   - /images/hotels/hyatt-lobby.png|ハイアットホテルロビーのイメージ|落ち着いた空間づくりはハイアットの魅力のひとつです。
   - /images/hotels/waldorf-room.png|上質なホテル客室イメージ|ホテル時間を大切にする旅行と相性が良いです。

@@ -10,24 +10,45 @@ export type Tag = {
   slug: string;
 };
 
+export type SocialLink = {
+  name: "X" | "YouTube" | "Instagram" | "TikTok" | "note" | "Threads" | "Facebook" | "Pinterest";
+  href: string;
+  iconLabel: string;
+};
+
 export const siteConfig = {
   name: "ヒルオジ旅行ブログ",
-  description:
-    "ハイコスパで最高のホテル体験を届ける旅行ブログ。ホテル宿泊記、ホテル上級会員、クレジットカード、飛行機、旅行ノウハウを実体験ベースで発信します。",
+  description: "ハイコスパで最高のホテル体験を届ける旅行ブログ",
   shortDescription: "ハイコスパで最高のホテル体験を届ける旅行ブログ",
   authorName: "ヒルオジ",
-  url: "https://hiruozi-travel-blog.com",
-  xUrl: "https://x.com/hiruozi_travel",
-  instagramUrl: "https://www.instagram.com/hiruozi_travel",
-  youtubeUrl: "",
-  tiktokUrl: "",
-  noteUrl: "https://note.com/hiruozi_travel",
-  threadsUrl: "https://www.threads.net/@hiruozi_travel",
-  contactEmail: "hello@hiruozi-travel-blog.com",
+  url: "https://hiruozi-travel-blog.vercel.app",
+  contactEmail: "hiruozi.hotel35@gmail.com",
+  xUrl: "https://x.com/hiruozi_hotel35",
+  youtubeUrl: "https://www.youtube.com/channel/UCwNs6XHqR72pnwn18cjTnWg",
+  instagramUrl: "https://www.instagram.com/hiruozi_hotel35/",
+  tiktokUrl: "https://www.tiktok.com/@hiruozi35",
+  noteUrl: "",
+  threadsUrl: "",
+  facebookUrl: "",
+  pinterestUrl: "",
   profileImage: "/images/profile/hiruozi-profile.png",
   ogpImage: "/images/ogp/default-ogp.png",
   profile:
-    "ホテルの朝食、ラウンジ、アップグレードが大好きな個人旅行ブロガー。高級ホテルを無理なく楽しむための予約術、上級会員特典、クレジットカード活用、空港ラウンジのリアルな使い勝手を、実体験に近い目線でまとめています。",
+    "ヒルトン・オナーズ ダイヤモンド会員。高級ホテルの宿泊記、朝食、クラブラウンジ、アップグレード、ホテル上級会員制度を中心に発信しています。良かった点だけでなく、気になった点や期待外れだった点も含めて、実際の宿泊体験を本音で紹介します。",
+  mainThemes: [
+    "高級ホテルの宿泊記",
+    "ホテル朝食",
+    "クラブラウンジ",
+    "客室アップグレード",
+    "ホテル上級会員制度",
+    "旅行に役立つポイント・マイル・クレジットカード情報",
+  ],
+  ads: {
+    googleAdsenseClientId: "",
+    articleTopSlotId: "",
+    articleBottomSlotId: "",
+    sidebarSlotId: "",
+  },
 };
 
 export const categories: Category[] = [
@@ -118,13 +139,63 @@ export const fixedPages = [
   { title: "サイトマップ", href: "/sitemap" },
 ];
 
+const socialTopPages = new Set([
+  "https://x.com",
+  "https://twitter.com",
+  "https://www.youtube.com",
+  "https://youtube.com",
+  "https://www.instagram.com",
+  "https://instagram.com",
+  "https://www.tiktok.com",
+  "https://tiktok.com",
+  "https://note.com",
+  "https://www.threads.net",
+  "https://threads.net",
+  "https://www.facebook.com",
+  "https://facebook.com",
+  "https://www.pinterest.com",
+  "https://pinterest.com",
+]);
+
+function isConfiguredSocialUrl(href: string) {
+  const trimmed = href.trim();
+
+  if (!trimmed) {
+    return false;
+  }
+
+  try {
+    const url = new URL(trimmed);
+    const normalized = `${url.origin}${url.pathname}`.replace(/\/+$/, "").toLowerCase();
+    return !socialTopPages.has(normalized);
+  } catch {
+    return false;
+  }
+}
+
+export function absoluteSiteUrl(pathname = "") {
+  if (!pathname) {
+    return siteConfig.url;
+  }
+
+  if (/^https?:\/\//i.test(pathname)) {
+    return pathname;
+  }
+
+  const baseUrl = siteConfig.url.replace(/\/+$/, "");
+  const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  return `${baseUrl}${normalizedPath}`;
+}
+
 export function getSocialLinks() {
   return [
-    { name: "X", href: siteConfig.xUrl },
-    { name: "Instagram", href: siteConfig.instagramUrl },
-    { name: "YouTube", href: siteConfig.youtubeUrl },
-    { name: "TikTok", href: siteConfig.tiktokUrl },
-    { name: "note", href: siteConfig.noteUrl },
-    { name: "Threads", href: siteConfig.threadsUrl },
-  ].filter((link) => link.href);
+    { name: "X", href: siteConfig.xUrl, iconLabel: "X" },
+    { name: "YouTube", href: siteConfig.youtubeUrl, iconLabel: "YT" },
+    { name: "Instagram", href: siteConfig.instagramUrl, iconLabel: "IG" },
+    { name: "TikTok", href: siteConfig.tiktokUrl, iconLabel: "TT" },
+    { name: "note", href: siteConfig.noteUrl, iconLabel: "N" },
+    { name: "Threads", href: siteConfig.threadsUrl, iconLabel: "TH" },
+    { name: "Facebook", href: siteConfig.facebookUrl, iconLabel: "FB" },
+    { name: "Pinterest", href: siteConfig.pinterestUrl, iconLabel: "P" },
+  ].filter((link): link is SocialLink => isConfiguredSocialUrl(link.href));
 }

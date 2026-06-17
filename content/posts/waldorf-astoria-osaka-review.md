@@ -15,8 +15,9 @@ brand: Waldorf Astoria
 area: 大阪
 rating: 4.7
 summary: 大阪で非日常感を味わいたい記念日旅行に向いた高級ホテル。客室の静けさ、眺望、朝食の満足度が印象的で、ホテル滞在そのものを楽しみたい人に合います。
-affiliateDisclosure: この記事には将来的に広告枠を設置できるスペースがあります。本文では宿泊体験の整理を中心にしています。
+affiliateDisclosure: 記事内には将来的に広告やアフィリエイトリンクを掲載する場合があります。本文では宿泊体験の整理を中心にしています。
 featured: true
+draft: true
 gallery:
   - /images/hotels/waldorf-room.png|ウォルドーフ・アストリア大阪の客室イメージ|落ち着いた色合いの客室は記念日利用にも向いています。
   - /images/hotels/osaka-night-view.png|大阪の夜景を望むホテル眺望イメージ|高層階からの眺望は滞在の満足度を大きく上げてくれます。

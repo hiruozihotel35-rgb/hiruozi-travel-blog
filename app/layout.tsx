@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/src/components/Footer";
 import { Header } from "@/src/components/Header";
-import { siteConfig } from "@/src/config/site";
+import { absoluteSiteUrl, siteConfig } from "@/src/config/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   alternates: {
-    canonical: "/",
+    canonical: absoluteSiteUrl("/"),
   },
   openGraph: {
     type: "website",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: siteConfig.ogpImage,
+        url: absoluteSiteUrl(siteConfig.ogpImage),
         width: 1200,
         height: 630,
         alt: `${siteConfig.name}のOGP画像`,
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} | ${siteConfig.shortDescription}`,
     description: siteConfig.description,
-    images: [siteConfig.ogpImage],
+    images: [absoluteSiteUrl(siteConfig.ogpImage)],
   },
 };
 

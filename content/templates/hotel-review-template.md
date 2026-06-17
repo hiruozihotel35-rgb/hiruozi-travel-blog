@@ -17,6 +17,7 @@ rating: 4.5
 summary: この記事の要約を100字前後で入力します。
 affiliateDisclosure: この記事には広告を含む場合があります。宿泊条件や特典は最新情報を公式サイトで確認してください。
 featured: false
+draft: true
 gallery:
   - /images/hotels/sample-room.png|客室の写真|客室のキャプション
   - /images/hotels/sample-breakfast.png|朝食の写真|朝食のキャプション

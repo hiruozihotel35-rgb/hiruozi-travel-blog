@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
-import { siteConfig } from "@/src/config/site";
+import { absoluteSiteUrl, siteConfig } from "@/src/config/site";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
   description:
     "ヒルオジ旅行ブログのプライバシーポリシー。個人情報、Cookie、広告配信、アクセス解析、免責事項の扱いについて掲載しています。",
   alternates: {
-    canonical: "/privacy",
+    canonical: absoluteSiteUrl("/privacy"),
   },
 };
 
@@ -36,19 +36,20 @@ export default function PrivacyPage() {
 
           <h2>Cookieについて</h2>
           <p>
-            当サイトでは、利便性向上、アクセス解析、広告配信のためにCookieを使用する場合があります。
+            当サイトでは、利便性向上、アクセス解析、広告配信などのためにCookieを使用する場合があります。
             Cookieによって個人を特定する情報を取得するものではありません。
           </p>
 
           <h2>広告配信について</h2>
           <p>
-            当サイトでは将来的にGoogleアドセンスなどの第三者配信広告サービスを利用する場合があります。
+            当サイトでは将来的にGoogle AdSenseなどの第三者配信広告サービスを利用する場合があります。
             広告配信事業者は、ユーザーの興味に応じた広告を表示するためCookieを使用することがあります。
+            広告の配信開始後は、各広告配信事業者のポリシーに従って適切に運用します。
           </p>
 
           <h2>アクセス解析について</h2>
           <p>
-            当サイトではアクセス状況を把握するため、アクセス解析ツールを利用する場合があります。
+            当サイトではアクセス状況を把握するため、Google Analyticsなどのアクセス解析ツールを利用する場合があります。
             収集されるデータは匿名であり、個人を特定するものではありません。
           </p>
 
@@ -56,6 +57,13 @@ export default function PrivacyPage() {
           <p>
             当サイトでは、旅行予約サイトやクレジットカード等のアフィリエイトプログラムを利用する場合があります。
             商品やサービスの申込み、契約はリンク先の事業者との取引となります。
+          </p>
+
+          <h2>免責事項</h2>
+          <p>
+            掲載内容はできる限り正確な情報となるよう努めますが、旅行情報、ホテル特典、料金、会員制度、
+            クレジットカード、ポイント、マイル等の条件は変更される場合があります。予約や申込みの前には、
+            必ず公式サイトの最新情報をご確認ください。
           </p>
 
           <h2>お問い合わせ</h2>
