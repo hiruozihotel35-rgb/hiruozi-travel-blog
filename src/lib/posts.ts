@@ -238,23 +238,32 @@ export function getTagByNameOrSlug(value: string): Tag | undefined {
   return tags.find((tag) => tag.name === value || tag.slug === value);
 }
 
+function normalizeTagValue(value: string) {
+  return getTagByNameOrSlug(value)?.slug ?? value;
+}
+
+function postHasTag(post: Post, tag: Tag) {
+  return post.tags.some((postTag) => normalizeTagValue(postTag) === tag.slug);
+}
+
 export function getPostsByTag(slug: string) {
   const tag = getTagByNameOrSlug(slug);
   if (!tag) {
     return [];
   }
 
-  return getAllPosts().filter((post) => post.tags.includes(tag.name));
+  return getAllPosts().filter((post) => postHasTag(post, tag));
 }
 
 export function getRelatedPosts(post: Post, limit = 3) {
   const category = getCategoryByNameOrSlug(post.category);
+  const postTagKeys = new Set(post.tags.map(normalizeTagValue));
 
   return getAllPosts()
     .filter((candidate) => candidate.slug !== post.slug)
     .map((candidate) => {
       const candidateCategory = getCategoryByNameOrSlug(candidate.category);
-      const sharedTags = candidate.tags.filter((tag) => post.tags.includes(tag)).length;
+      const sharedTags = candidate.tags.filter((tag) => postTagKeys.has(normalizeTagValue(tag))).length;
       const sameCategory = category?.slug === candidateCategory?.slug ? 2 : 0;
       return {
         post: candidate,
@@ -270,7 +279,7 @@ export function getTagCounts() {
   const allPosts = getAllPosts();
   return tags.map((tag) => ({
     ...tag,
-    count: allPosts.filter((post) => post.tags.includes(tag.name)).length,
+    count: allPosts.filter((post) => postHasTag(post, tag)).length,
   }));
 }
 

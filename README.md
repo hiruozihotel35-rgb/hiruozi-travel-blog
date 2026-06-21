@@ -140,6 +140,49 @@ gallery:
 
 画像には必ず内容が分かる`alt`テキストを入れてください。ページ側では`next/image`で表示しています。
 
+## ウォルドーフ大阪の記事準備
+
+最初の本番記事ドラフトは次のファイルで管理します。
+
+```txt
+content/posts/waldorf-astoria-osaka-real-review.md
+```
+
+写真は次のフォルダに置きます。
+
+```txt
+public/images/hotels/waldorf-osaka/
+```
+
+写真ファイル名は、英数字・小文字・ハイフンで統一します。スペースや日本語は使いません。
+
+```txt
+waldorf-osaka-room-01.jpg
+waldorf-osaka-room-02.jpg
+waldorf-osaka-room-03.jpg
+waldorf-osaka-room-04.jpg
+waldorf-osaka-room-05.jpg
+waldorf-osaka-room-06.jpg
+waldorf-osaka-room-07.jpg
+waldorf-osaka-room-08.jpg
+waldorf-osaka-breakfast.jpg
+```
+
+記事本文では、`【ここに実際の予約内容を入力】`のような仮テキストを、実際の宿泊体験に基づく内容へ置き換えてください。料金、部屋タイプ、アップグレード、朝食内容、ヒルトンダイヤ特典などは、確認できた事実だけを書きます。
+
+公開するときは、記事ファイルのfront matterを次のように変更します。
+
+```yaml
+draft: false
+```
+
+公開前には必ず次を実行し、エラーがないことを確認してください。
+
+```bash
+npm run lint
+npm run build
+```
+
 ## カテゴリーの追加方法
 
 カテゴリーは`src/config/site.ts`の`categories`に追加します。
