@@ -18,7 +18,7 @@ author: "ヒルオジ"
 hotelName: "ウォルドーフ・アストリア大阪"
 brand: "ウォルドーフ・アストリア"
 area: "大阪"
-draft: true
+draft: false
 gallery:
   - /images/hotels/waldorf-osaka/waldorf-osaka-room-01.jpg|ウォルドーフ・アストリア大阪の高層階からの夜景と館内スペース|夜は落ち着いた雰囲気で、大きな窓から大阪の景色を眺められます。
   - /images/hotels/waldorf-osaka/waldorf-osaka-room-02.jpg|ウォルドーフ・アストリア大阪のロビー周辺|到着時に目に入るロビー周辺。木の質感と照明が落ち着いた印象です。
