@@ -17,7 +17,7 @@ rating: 4.4
 summary: マリオットプラチナはホテル数とブランド幅、ヒルトンダイヤは朝食やラウンジの分かりやすさが魅力です。どちらが上かではなく、旅の目的で選ぶのが現実的です。
 affiliateDisclosure: 本記事はホテル会員制度の考え方を整理したもので、特定サービスへの申込みを強く促すものではありません。
 featured: true
-draft: false
+draft: true
 gallery:
   - /images/hotels/marriott-room.png|マリオット系ホテル客室のイメージ|ホテル数とブランド幅はマリオットの大きな魅力です。
   - /images/hotels/hotel-lounge.png|ホテルラウンジ比較のイメージ|ラウンジ特典はホテルごとの運用差も確認したいポイントです。

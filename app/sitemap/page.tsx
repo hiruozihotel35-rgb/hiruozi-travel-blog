@@ -1,8 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/src/components/Breadcrumbs";
-import { absoluteSiteUrl, categories, fixedPages, tags } from "@/src/config/site";
-import { getAllPosts } from "@/src/lib/posts";
+import { absoluteSiteUrl, fixedPages } from "@/src/config/site";
+import { getAllPosts, getCategoryCounts, getTagCounts } from "@/src/lib/posts";
 
 export const metadata: Metadata = {
   title: "サイトマップ",
@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 
 export default function SitemapPage() {
   const posts = getAllPosts();
+  const visibleCategories = getCategoryCounts().filter((category) => category.count > 0);
+  const visibleTags = getTagCounts().filter((tag) => tag.count > 0);
 
   return (
     <div className="bg-white px-5 py-10 lg:px-8">
@@ -57,7 +59,7 @@ export default function SitemapPage() {
           <section className="rounded-lg border border-stone-200 bg-[var(--paper)] p-6">
             <h2 className="text-xl font-semibold text-stone-950">カテゴリ</h2>
             <div className="mt-4 grid gap-2 text-sm">
-              {categories.map((category) => (
+              {visibleCategories.map((category) => (
                 <Link key={category.slug} className="footer-link text-stone-700" href={`/categories/${category.slug}`}>
                   {category.name}
                 </Link>
@@ -68,7 +70,7 @@ export default function SitemapPage() {
           <section className="rounded-lg border border-stone-200 bg-[var(--paper)] p-6">
             <h2 className="text-xl font-semibold text-stone-950">タグ</h2>
             <div className="mt-4 flex flex-wrap gap-2">
-              {tags.map((tag) => (
+              {visibleTags.map((tag) => (
                 <Link key={tag.slug} className="gold-label" href={`/tags/${tag.slug}`}>
                   {tag.name}
                 </Link>

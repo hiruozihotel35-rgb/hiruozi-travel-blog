@@ -17,7 +17,7 @@ rating: 4.1
 summary: IHGは高級ホテルから使いやすい都市型ホテルまで選択肢が広く、旅行スタイルに合わせやすいのが魅力です。一方で、ブランド差と特典内容の確認は欠かせません。
 affiliateDisclosure: 記事内には将来的に広告やアフィリエイトリンクを掲載する場合があります。予約前には必ず公式情報と最新条件を確認してください。
 featured: false
-draft: false
+draft: true
 gallery:
   - /images/hotels/ihg-lobby.png|IHGホテルロビーのイメージ|都市型ホテルはアクセスと価格のバランスが重要です。
   - /images/hotels/city-hotel-night.png|夜の都市型ホテル外観イメージ|旅行目的に合わせてブランドを選ぶと満足度が上がります。

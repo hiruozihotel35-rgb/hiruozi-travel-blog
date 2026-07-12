@@ -17,7 +17,7 @@ rating: 4.5
 summary: ヒルトンダイヤモンドは、朝食とラウンジをよく使う人ほど価値が出やすいステータスです。一方で、繁忙期のアップグレード期待やホテル選びには注意が必要です。
 affiliateDisclosure: 記事内には将来的に広告やアフィリエイトリンクを掲載する場合があります。現時点では過度な申込み誘導は掲載していません。
 featured: true
-draft: false
+draft: true
 gallery:
   - /images/hotels/hilton-breakfast.png|ホテル朝食ビュッフェのイメージ|朝食無料特典は家族旅行や連泊で特に価値が大きくなります。
   - /images/hotels/hotel-lounge.png|クラブラウンジのイメージ|ラウンジを使う時間帯が合うかどうかで満足度は変わります。

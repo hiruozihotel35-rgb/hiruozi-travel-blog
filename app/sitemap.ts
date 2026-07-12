@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
-import { categories, fixedPages, tags } from "@/src/config/site";
-import { absoluteUrl, articleUrl, getAllPosts } from "@/src/lib/posts";
+import { fixedPages } from "@/src/config/site";
+import { absoluteUrl, articleUrl, getAllPosts, getCategoryCounts, getTagCounts } from "@/src/lib/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
+  const visibleCategories = getCategoryCounts().filter((category) => category.count > 0);
+  const visibleTags = getTagCounts().filter((tag) => tag.count > 0);
   const staticPages = [
     "",
     "/articles",
@@ -19,14 +21,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: (pathname === "" ? "daily" : "monthly") as "daily" | "monthly",
       priority: pathname === "" ? 1 : 0.7,
     })),
-    ...categories.map((category) => ({
+    ...visibleCategories.map((category) => ({
       url: absoluteUrl(`/categories/${category.slug}`),
       lastModified: new Date("2026-06-12"),
       changeFrequency: "weekly" as const,
       priority: 0.8,
       images: [absoluteUrl(category.image)],
     })),
-    ...tags.map((tag) => ({
+    ...visibleTags.map((tag) => ({
       url: absoluteUrl(`/tags/${tag.slug}`),
       lastModified: new Date("2026-06-12"),
       changeFrequency: "weekly" as const,

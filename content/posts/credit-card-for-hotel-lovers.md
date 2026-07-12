@@ -17,7 +17,7 @@ rating: 4.2
 summary: ホテル好きのカード選びは還元率だけでなく、宿泊特典、空港ラウンジ、ポイント交換先、年会費を総合して考えることが大切です。
 affiliateDisclosure: 本記事はクレジットカード選びの考え方を整理する記事です。申込み前には必ず公式情報と最新条件を確認してください。
 featured: false
-draft: false
+draft: true
 gallery:
   - /images/hotels/credit-card-desk.png|ホテルデスクとクレジットカードのイメージ|カード特典は旅行スタイルに合うものを選ぶことが大切です。
   - /images/posts/airport-lounge.png|空港ラウンジのイメージ|空港ラウンジ特典は移動日の快適さに直結します。
